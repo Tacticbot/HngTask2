@@ -3,8 +3,8 @@ from sqlalchemy.orm import relationship
 
 from .database import Base
 
-class User(Base):
-    __tablename__ = "users"
+class Person(Base):
+    __tablename__ = "persons"
 
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, primary_key=True, index= True)
     name = Column(String, index=True)
