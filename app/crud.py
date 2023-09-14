@@ -17,16 +17,16 @@ def create_person(db: Session, person: schemas.PersonCreate):
     db.refresh(new_person)
     return new_person
 
-def update_person(db: Session, user_id: int, update_person: schemas.PersonCreate):
+def update_person(db: Session, name: str, update_person: schemas.PersonCreate):
     db_person = db.query(models.Person).filter(
-        models.Person.user_id == user_id).first()
+        models.Person.name == name).first()
     db_person.name = update_person.name
     db.commit()
     db.refresh(db_person)
     return db_person
 
-def delete_person(db:Session, user_id: int):
+def delete_person(db:Session, name: str):
     db.query(models.Person).filter(
-        models.Person.user_id == user_id).delete()
+        models.Person.name == name).delete()
     db.commit()
-    return f"Person with user_id number: {user_id} has been deleted"
+    return f"Person with name: {name} has been deleted"
