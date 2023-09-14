@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from . import models, schemas
+import models, schemas
 
 def get_person(db: Session, user_id: int):
     return db.query(models.Person).filter(models.Person.id == user_id).first()
