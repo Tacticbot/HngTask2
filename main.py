@@ -32,10 +32,6 @@ def create_person(person: schemas.PersonCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=409, detail= "Name already exists")
     return crud.create_person(db=db, person=person)
 
-@app.get("/api/", response_model= list[schemas.Person])
-def read_persons(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    persons = crud.get_persons(db, skip=skip, limit=limit)
-    return persons
 
 @app.get("/api/user_id", response_model=schemas.Person)
 def read_person(name: str , db: Session = Depends(get_db)):
